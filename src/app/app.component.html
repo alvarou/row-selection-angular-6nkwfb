@@ -1,8 +1,13 @@
 <div style="margin-bottom: 30px">
-	<h4> See full article: <a href="https://blog.ag-grid.com/styling-selected-rows-and-cell-ranges-in-ag-grid/"> Styling
-			selected rows and cell ranges in ag-Grid </a> </h4>
+  <h4>
+    See full article:
+    <a
+      href="https://blog.ag-grid.com/styling-selected-rows-and-cell-ranges-in-ag-grid/"
+    >
+      Styling selected rows and cell ranges in ag-Grid
+    </a>
+  </h4>
 </div>
-
 
 <button
   (click)="setThemeName('red-theme')"
@@ -29,8 +34,15 @@
 </button>
 
 <div id="grid-theme-wrapper" style="height: 100%" [className]="themeName">
-	<ag-grid-angular style="width: 100%; height: 600px;" class="ag-theme-alpine" [rowData]="rowData"
-		[columnDefs]="columnDefs" [enableRangeSelection]="true" [rowSelection]="'multiple'"
-		(gridReady)="onGridReady($event)" (firstDataRendered)="onFirstDataRendered($event)">
-	</ag-grid-angular>
+  <!-- app.component.html -->
+  <ag-grid-angular
+    style="width: 100%; height: 100%;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (firstDataRendered)="onFirstDataRendered($event)"
+    (gridReady)="onGridReady($event)"
+    [getContextMenuItems]="getContextMenuItems"
+  >
+  </ag-grid-angular>
 </div>

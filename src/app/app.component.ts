@@ -1,17 +1,17 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import data from "./data.json";
+import data from './data.json';
 
 @Component({
-  selector: "my-app",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   themeName: string;
   gridApi: any;
   constructor() {
-    this.themeName = "red-theme";
+    this.themeName = 'green-theme';
   }
 
   setThemeName(name) {
@@ -26,22 +26,38 @@ export class AppComponent {
   onFirstDataRendered(params) {
     params.api.sizeColumnsToFit();
     // select first two nodes
-    params.api.getRowNode(0).setSelected(true);
-    params.api.getRowNode(1).setSelected(true);
+    //params.api.getRowNode(0).setSelected(true);
+    //params.api.getRowNode(1).setSelected(true);
   }
 
   columnDefs = [
     {
-      field: "athlete",
+      field: 'athlete',
       minWidth: 150,
-      checkboxSelection: false
+      checkboxSelection: false,
     },
 
-    { field: "age", maxWidth: 90 },
-    { field: "country", minWidth: 150 },
-    { field: "sport", minWidth: 150 },
-    { field: "gold" }
+    { field: 'age', maxWidth: 90 },
+    { field: 'country', minWidth: 150 },
+    { field: 'sport', minWidth: 150 },
+    { field: 'gold' },
   ];
 
   rowData = [];
+
+  getContextMenuItems(params) {
+    const defaultItems = params.defaultItems || [];
+    const rowData = params.node.data;
+
+    return [
+      {
+        name: 'Custom Action',
+        action: () => {
+          console.log('Row data:', rowData);
+        },
+      },
+      'separator',
+      ...defaultItems,
+    ];
+  }
 }
